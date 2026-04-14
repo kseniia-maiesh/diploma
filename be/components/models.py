@@ -1,0 +1,24 @@
+from django.db import models
+
+class ComponentType(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'component_types'
+
+class Status(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'statuses'
+
+class Component(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    type = models.ForeignKey(ComponentType, on_delete=models.CASCADE)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE)
+    source = models.CharField(max_length=255)
+    image_url = models.TextField()
+
+    class Meta:
+        db_table = 'components'

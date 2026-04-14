@@ -1,0 +1,91 @@
+.detail-filter-card {
+  margin-bottom: 24px;
+  border-radius: 16px;
+  border: none;
+}
+
+.detail-filter-card.dark {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.detail-filter-card.light {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+}
+
+.detail-filter-body {
+  border-radius: 12px;
+  margin: 4px;
+}
+
+.detail-filter-body.dark {
+  background: #1f1f1f;
+}
+
+.detail-filter-body.light {
+  background: #ffffff;
+}
+
+.filter-section-icon {
+  font-size: 18px;
+}
+
+.filter-section-icon.dark {
+  color: #1890ff;
+}
+
+.filter-section-icon.light {
+  color: #667eea;
+}
+
+.filter-section-title {
+  font-size: 16px;
+}
+
+.filter-section-title.dark {
+  color: #fff;
+}
+
+.filter-section-title.light {
+  color: #000;
+}
+
+.filter-reset-button {
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  height: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.filter-reset-button.dark {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.filter-reset-button.light {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.detail-filter-card {
+  margin-bottom: 24px;
+  border-radius: 16px;
+  border: none;
+}
+
+/* BODY CARD (заміна styles.body) */
+.detail-filter-card .ant-card-body {
+  border-radius: 12px;
+  margin: 4px;
+  padding: 16px;
+}
+
+/* theme background */
+.detail-filter-card.dark .ant-card-body {
+  background: #1f1f1f;
+}
+
+.detail-filter-card.light .ant-card-body {
+  background: #ffffff;
+}
