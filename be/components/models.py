@@ -18,6 +18,7 @@ class Component(models.Model):
     type = models.ForeignKey(ComponentType, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     source = models.CharField(max_length=255)
+    origin_country = models.CharField(max_length=100, blank=True, null=True)
     image_url = models.TextField()
 
     class Meta:
