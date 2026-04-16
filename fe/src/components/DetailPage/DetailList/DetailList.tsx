@@ -1,5 +1,5 @@
 import { Card, Tag, Typography, Flex, Button, Popconfirm, Space } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteFilled, LinkOutlined} from '@ant-design/icons';
 import type { DetailListProps } from '../../../types/types';
 import { regions } from '../../../constants/constants';
 import ReactCountryFlag from 'react-country-flag';
@@ -13,6 +13,7 @@ function DetailList({
   description,
   type_name,
   status_name,
+  source,
   origin_country,
   image_url,
   theme,
@@ -97,35 +98,28 @@ const getTypeClass = (type: string): string => {
               cancelText='No'
               okType='danger'
             >
-              <Button
-                type='text'
-                danger
-                icon={<DeleteOutlined />}
-                size='small'
-              />
+              <Button type='text' danger icon={<DeleteFilled />} size='small' />
             </Popconfirm>
           )}
         </Flex>
         <Text className={`detail-card-description ${themeClass}`}>
           {description}
         </Text>
+        <Text className={`detail-card-description ${themeClass}`}>
+          <LinkOutlined style={{ marginRight: 6 }} />
+          {source}
+        </Text>
         <Flex
           justify='space-between'
           align='center'
           className='detail-card-tags'
         >
-          <Tag
-            className={`detail-type-tag ${getTypeClass(type_name)} ${themeClass}`}
-          >
+          <Tag className={`detail-type-tag ${getTypeClass(type_name)} ${themeClass}`}>
             {type_name}
           </Tag>
 
           <Space size='small' align='center'>
-            <ReactCountryFlag
-              countryCode={getCountryCode(origin_country) || 'UN'}
-              svg
-              style={{ width: '1.2em', height: '1.2em' }}
-            />
+            <ReactCountryFlag countryCode={getCountryCode(origin_country) || 'UN'} svg />
           </Space>
         </Flex>
       </Flex>

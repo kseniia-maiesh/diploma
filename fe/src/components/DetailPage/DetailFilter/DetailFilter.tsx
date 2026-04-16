@@ -72,7 +72,7 @@ const DetailFilter: React.FC<DetailFilterProps> = ({
               <Select
                 placeholder='Select type'
                 value={filters.type}
-                onChange={(value) => onFilterChange({ type: value })}
+                onChange={(value) => onFilterChange({ type: value ?? null })}
                 allowClear
                 size='large'
                 className='w-100'
@@ -87,7 +87,7 @@ const DetailFilter: React.FC<DetailFilterProps> = ({
               <Select
                 placeholder='Select status'
                 value={filters.status}
-                onChange={(value) => onFilterChange({ status: value })}
+                onChange={(value) => onFilterChange({ status: value ?? null })}
                 allowClear
                 size='large'
                 className='w-100'
@@ -110,11 +110,7 @@ const DetailFilter: React.FC<DetailFilterProps> = ({
                   value: country.name,
                   label: (
                     <Space>
-                      <ReactCountryFlag
-                        countryCode={country.value}
-                        svg
-                        style={{ width: '1.2em', height: '1.2em' }}
-                      />
+                      <ReactCountryFlag countryCode={country.value} svg />
                       {country.name}
                     </Space>
                   ),

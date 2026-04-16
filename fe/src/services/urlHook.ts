@@ -43,11 +43,8 @@ export const useFiltersInUrl = ({
     if (filters.description) params.description = filters.description;
     if (filters.type !== null) params.type = String(filters.type);
     if (filters.status !== null) params.status = String(filters.status);
-    if (filters.origin_country)
-      params.origin_country = filters.origin_country;
+    if (filters.origin_country) params.origin_country = filters.origin_country;
 
-    if (filters.name || filters.type || filters.status || filters.origin_country) {
-      setSearchParams(params);
-    }
+    setSearchParams(params);
   }, [filters]);
 };
