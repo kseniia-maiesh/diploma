@@ -102,8 +102,8 @@ const DetailFilter: React.FC<DetailFilterProps> = ({
             <Col xs={24} sm={12} md={6}>
               <Select
                 placeholder='Select country'
-                value={filters.origin_country}
-                onChange={(name) => onFilterChange({ origin_country: name })}
+                value={filters.origin_country || null}
+                onChange={(name) => onFilterChange({ origin_country: name ?? null })}
                 allowClear
                 size='large'
                 className='w-100'
