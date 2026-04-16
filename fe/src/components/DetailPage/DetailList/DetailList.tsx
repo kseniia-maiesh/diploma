@@ -1,7 +1,7 @@
-import { Card, Tag, Typography, Flex, Button, Popconfirm, Space } from 'antd';
+import { Card, Tag, Typography, Flex, Button, Popconfirm, Space, Tooltip } from 'antd';
 import { DeleteFilled, LinkOutlined} from '@ant-design/icons';
 import type { DetailListProps } from '../../../types/types';
-import { regions } from '../../../constants/constants';
+import { regions, typeDescriptions } from '../../../constants/constants';
 import ReactCountryFlag from 'react-country-flag';
 import './DetailList.css';
 
@@ -114,10 +114,11 @@ const getTypeClass = (type: string): string => {
           align='center'
           className='detail-card-tags'
         >
-          <Tag className={`detail-type-tag ${getTypeClass(type_name)} ${themeClass}`}>
-            {type_name}
-          </Tag>
-
+          <Tooltip title={typeDescriptions[type_name] || type_name}>
+            <Tag className={`detail-type-tag ${getTypeClass(type_name)} ${themeClass}`}>
+              {type_name}
+            </Tag>
+          </Tooltip>
           <Space size='small' align='center'>
             <ReactCountryFlag countryCode={getCountryCode(origin_country) || 'UN'} svg />
           </Space>
