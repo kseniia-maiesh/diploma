@@ -22,7 +22,7 @@ export const initialState: AppState = {
   },
   loading: false,
   error: null,
-  theme: 'light',
+  theme: (localStorage.getItem('theme') as 'light' | 'dark') || 'light'
 }
 
 export function appReducer(state: AppState, action: AppAction): AppState {
@@ -119,6 +119,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       }
 
     case 'TOGGLE_THEME':
+      const newTheme = state.theme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
       return {
         ...state,
         theme: state.theme === 'light' ? 'dark' : 'light',
