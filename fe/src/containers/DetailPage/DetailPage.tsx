@@ -28,12 +28,21 @@ import DetailFilter from '../../components/DetailPage/DetailFilter/DetailFilter'
 import { FilterState, DetailFormData } from '../../types/types';
 import DetailModal from '../../components/DetailPage/DetailModal/DetailModal';
 import DetailHeader from '../../components/DetailPage/Header/Header';
+import { useFiltersInUrl } from '../../services/urlHook';
+import { useSearchParams } from 'react-router-dom';
 import './DetailPage.css';
 
 const DetailPage: React.FC = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const themeClass = state.theme === 'dark' ? 'dark' : 'light';
+
+  useFiltersInUrl({
+    filters: state.filters,
+    dispatch,
+    setFilter,
+    setPage,
+  });
 
   useEffect(() => {
     loadDetails(dispatch, state.pagination.currentPage, state.filters);
@@ -66,8 +75,10 @@ const DetailPage: React.FC = () => {
   );
 
   const ui = useMemo(() => {
-    const showDetails = !state.loading && !state.error && state.components.length > 0;
-    const showEmpty = !state.loading && !state.error && state.components.length === 0;
+    const showDetails =
+      !state.loading && !state.error && state.components.length > 0;
+    const showEmpty =
+      !state.loading && !state.error && state.components.length === 0;
 
     const resultsRange = {
       start: (state.pagination.currentPage - 1) * state.pagination.pageSize + 1,
@@ -80,12 +91,14 @@ const DetailPage: React.FC = () => {
     return { showDetails, showEmpty, resultsRange };
   }, [state]);
 
-  const handleRetry = () => loadDetails(dispatch, state.pagination.currentPage, state.filters);
+  const handleRetry = () =>
+    loadDetails(dispatch, state.pagination.currentPage, state.filters);
   const handleThemeToggle = () => toggleTheme(dispatch);
   const handleAddDetail = () => setIsModalOpen(true);
   const handleResetFilters = () => resetFilters(dispatch);
   const handlePageChange = (page: number) => setPage(dispatch, page);
-  const handleFilterChange = (filters: Partial<FilterState>) => setFilter(dispatch, filters);
+  const handleFilterChange = (filters: Partial<FilterState>) =>
+    setFilter(dispatch, filters);
 
   const handleModalOk = async (formData: DetailFormData) => {
     const result = await createDetail(dispatch, formData);
@@ -114,7 +127,7 @@ const DetailPage: React.FC = () => {
 
   const renderLoading = () => (
     <div className='detail-page-loading'>
-      <Spin size='large' description='Loading...' /> 
+      <Spin size='large' description='Loading...' />
     </div>
   );
 
@@ -169,7 +182,9 @@ const DetailPage: React.FC = () => {
             pageSize={state.pagination.pageSize}
             onChange={handlePageChange}
             showSizeChanger={false}
-            showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+            showTotal={(total, range) =>
+              `${range[0]}-${range[1]} of ${total} items`
+            }
           />
         </div>
       )}
