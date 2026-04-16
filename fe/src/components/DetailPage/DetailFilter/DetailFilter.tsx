@@ -74,6 +74,7 @@ const DetailFilter: React.FC<DetailFilterProps> = ({
                 value={filters.type}
                 onChange={(value) => onFilterChange({ type: value ?? null })}
                 allowClear
+                showSearch
                 size='large'
                 className='w-100'
                 options={componentTypes.map((type) => ({
@@ -106,6 +107,7 @@ const DetailFilter: React.FC<DetailFilterProps> = ({
                 allowClear
                 size='large'
                 className='w-100'
+                showSearch
                 options={regions.map((country) => ({
                   value: country.name,
                   label: (
