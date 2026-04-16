@@ -5,12 +5,13 @@ export interface DetailListProps {
   type_name: string
   status_name: string
   source: string
+  origin_country: string
   image_url: string
   theme: 'light' | 'dark'
   onDelete?: (id: number) => void
 }
 
-export interface DetailType {
+export interface Type {
   id: number
   name: string
 }
@@ -29,6 +30,7 @@ export interface DetailItem {
   status: number
   status_name: string
   source: string
+  origin_country: string
   image_url: string
 }
 
@@ -37,6 +39,7 @@ export interface FilterState {
   description: string
   type: number | null
   status: number | null
+  origin_country: string
   source: string
 }
 
@@ -51,7 +54,7 @@ export interface PaginationInfo {
 
 export interface AppState {
   components: DetailItem[]
-  componentTypes: DetailType[]
+  componentTypes: Type[]
   statuses: Status[]
   filters: FilterState
   pagination: PaginationInfo
@@ -66,6 +69,7 @@ export interface DetailFormData {
   type: number | null
   status: number | null
   source: string
+  origin_country: string
   image_url: string
 }
 
@@ -79,7 +83,7 @@ export interface DetailModalProps {
 
 export interface DetailFilterProps {
   filters: FilterState;
-  componentTypes: DetailType[];
+  componentTypes: Type[];
   statuses: Status[];
   onFilterChange: (filters: Partial<FilterState>) => void;
   onReset: () => void;
@@ -88,7 +92,7 @@ export interface DetailFilterProps {
 
 export type AppAction =
   | { type: 'SET_COMPONENTS'; payload: { results: DetailItem[]; count: number; next: string | null; previous: string | null } }
-  | { type: 'SET_COMPONENT_TYPES'; payload: DetailType[] }
+  | { type: 'SET_COMPONENT_TYPES'; payload: Type[] }
   | { type: 'SET_STATUSES'; payload: Status[] }
   | { type: 'SET_FILTER'; payload: Partial<FilterState> }
   | { type: 'RESET_FILTERS' }

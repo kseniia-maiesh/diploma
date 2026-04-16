@@ -9,6 +9,7 @@ export const initialState: AppState = {
     description: '',
     type: null,
     status: null,
+    origin_country: '',
     source: '',
   },
   pagination: {

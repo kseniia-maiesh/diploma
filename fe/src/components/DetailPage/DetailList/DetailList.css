@@ -80,67 +80,11 @@
   margin-top: auto;
 }
 
-/* Tag styles for type */
 .detail-type-tag {
   padding: 4px 12px;
   border-radius: 4px;
   font-weight: 500;
   border: none;
-}
-
-/* Memory type */
-.detail-type-tag.memory.dark {
-  background: linear-gradient(135deg, #3f0d75, #22075e);
-  color: #d3adf7;
-}
-
-.detail-type-tag.memory.light {
-  background: linear-gradient(135deg, #9254de, #722ed1);
-  color: #ffffff;
-}
-
-/* GPS/Radio type */
-.detail-type-tag.gps.dark {
-  background: linear-gradient(135deg, #0d5c5c, #003a3a);
-  color: #87e8de;
-}
-
-.detail-type-tag.gps.light {
-  background: linear-gradient(135deg, #36cfc9, #13c2c2);
-  color: #ffffff;
-}
-
-/* Microcontroller/Processor type */
-.detail-type-tag.processor.dark {
-  background: linear-gradient(135deg, #6e0d4f, #3a0629);
-  color: #ffadd2;
-}
-
-.detail-type-tag.processor.light {
-  background: linear-gradient(135deg, #ff85c0, #eb2f96);
-  color: #ffffff;
-}
-
-/* Sensor type */
-.detail-type-tag.sensor.dark {
-  background: linear-gradient(135deg, #7a3e00, #4d2600);
-  color: #ffd591;
-}
-
-.detail-type-tag.sensor.light {
-  background: linear-gradient(135deg, #ffc069, #fa8c16);
-  color: #ffffff;
-}
-
-/* Default type */
-.detail-type-tag.default.dark {
-  background: linear-gradient(135deg, #1d3a8a, #10239e);
-  color: #91d5ff;
-}
-
-.detail-type-tag.default.light {
-  background: linear-gradient(135deg, #69c0ff, #1890ff);
-  color: #ffffff;
 }
 
 .detail-card .ant-card-body {
@@ -153,4 +97,174 @@
 .detail-card .ant-card-cover {
   margin: 0;
   padding: 0;
+}
+
+.detail-type-tag.microcontroller.dark {
+  background: linear-gradient(135deg, #3b0d6e, #1e063a);
+  color: #e0b3ff;
+}
+
+.detail-type-tag.microcontroller.light {
+  background: linear-gradient(135deg, #8e44ad, #6c2bd9);
+  color: #ffffff;
+}
+
+.detail-type-tag.gps.dark {
+  background: linear-gradient(135deg, #0d5c5c, #002f2f);
+  color: #7fffd4;
+}
+
+.detail-type-tag.gps.light {
+  background: linear-gradient(135deg, #2ec4b6, #1aa6a6);
+  color: #ffffff;
+}
+
+.detail-type-tag.radio.dark {
+  background: linear-gradient(135deg, #5a3b0d, #2f1d06);
+  color: #ffd28a;
+}
+
+.detail-type-tag.radio.light {
+  background: linear-gradient(135deg, #f4a261, #e76f51);
+  color: #ffffff;
+}
+
+.detail-type-tag.sensor.dark {
+  background: linear-gradient(135deg, #4d2e00, #261600);
+  color: #ffd591;
+}
+
+.detail-type-tag.sensor.light {
+  background: linear-gradient(135deg, #ffb703, #fb8500);
+  color: #ffffff;
+}
+
+.detail-type-tag.power.dark {
+  background: linear-gradient(135deg, #1b4332, #081c15);
+  color: #95d5b2;
+}
+
+.detail-type-tag.power.light {
+  background: linear-gradient(135deg, #52b788, #40916c);
+  color: #ffffff;
+}
+
+.detail-type-tag.memory.dark {
+  background: linear-gradient(135deg, #3f0d75, #22075e);
+  color: #d3adf7;
+}
+
+.detail-type-tag.memory.light {
+  background: linear-gradient(135deg, #9254de, #722ed1);
+  color: #ffffff;
+}
+
+.detail-type-tag.antenna.dark {
+  background: linear-gradient(135deg, #3d405b, #1d1e33);
+  color: #a8dadc;
+}
+
+.detail-type-tag.antenna.light {
+  background: linear-gradient(135deg, #457b9d, #1d3557);
+  color: #ffffff;
+}
+
+.detail-type-tag.camera.dark {
+  background: linear-gradient(135deg, #2b2d42, #121420);
+  color: #c9d6ff;
+}
+
+.detail-type-tag.camera.light {
+  background: linear-gradient(135deg, #8ecae6, #219ebc);
+  color: #ffffff;
+}
+
+.detail-type-tag.flight-controller.dark {
+  background: linear-gradient(135deg, #6a040f, #370617);
+  color: #ffb3c1;
+}
+
+.detail-type-tag.flight-controller.light {
+  background: linear-gradient(135deg, #e63946, #d00000);
+  color: #ffffff;
+}
+
+.detail-type-tag.voltage-regulator.dark {
+  background: linear-gradient(135deg, #14213d, #0b132b);
+  color: #90e0ef;
+}
+
+.detail-type-tag.voltage-regulator.light {
+  background: linear-gradient(135deg, #48cae4, #00b4d8);
+  color: #ffffff;
+}
+
+.detail-type-tag.battery.dark {
+  background: linear-gradient(135deg, #1b4332, #081c15);
+  color: #b7e4c7;
+}
+
+.detail-type-tag.battery.light {
+  background: linear-gradient(135deg, #52b788, #2d6a4f);
+  color: #ffffff;
+}
+
+.detail-type-tag.connector.dark {
+  background: linear-gradient(135deg, #343a40, #212529);
+  color: #ced4da;
+}
+
+.detail-type-tag.connector.light {
+  background: linear-gradient(135deg, #adb5bd, #6c757d);
+  color: #ffffff;
+}
+
+.detail-type-tag.pcb.dark {
+  background: linear-gradient(135deg, #2f3e46, #1b263b);
+  color: #95d5b2;
+}
+
+.detail-type-tag.pcb.light {
+  background: linear-gradient(135deg, #84a98c, #52796f);
+  color: #ffffff;
+}
+
+.detail-type-tag.gyroscope.dark {
+  background: linear-gradient(135deg, #3a0ca3, #240046);
+  color: #bde0fe;
+}
+
+.detail-type-tag.gyroscope.light {
+  background: linear-gradient(135deg, #4361ee, #3f37c9);
+  color: #ffffff;
+}
+
+.detail-type-tag.accelerometer.dark {
+  background: linear-gradient(135deg, #5f0f40, #310030);
+  color: #ffafcc;
+}
+
+.detail-type-tag.accelerometer.light {
+  background: linear-gradient(135deg, #f72585, #b5179e);
+  color: #ffffff;
+}
+
+.detail-type-tag.servo.dark {
+  background: linear-gradient(135deg, #283618, #1b1b1b);
+  color: #caffbf;
+}
+
+.detail-type-tag.servo.light {
+  background: linear-gradient(135deg, #606c38, #283618);
+  color: #ffffff;
+}
+
+.detail-type-tag.default.dark {
+  background: linear-gradient(135deg, #1d3a8a, #10239e);
+  color: #91d5ff;
+}
+
+.detail-type-tag.default.light {
+  background: linear-gradient(135deg, #69c0ff, #1890ff);
+  color: #ffffff;
 }

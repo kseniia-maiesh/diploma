@@ -18,6 +18,7 @@ export const loadDetails = async (
     if (filters.description) params.append('description', filters.description);
     if (filters.type) params.append('type', filters.type.toString());
     if (filters.status) params.append('status', filters.status.toString());
+    if (filters.origin_country) params.append('origin_country', filters.origin_country);
     if (filters.source) params.append('source', filters.source);
 
     const response = await api.get(`/api/components/?${params.toString()}`);

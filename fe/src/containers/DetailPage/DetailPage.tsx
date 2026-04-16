@@ -114,7 +114,7 @@ const DetailPage: React.FC = () => {
 
   const renderLoading = () => (
     <div className='detail-page-loading'>
-      <Spin size='large' description="Loading..." /> 
+      <Spin size='large' description='Loading...' /> 
     </div>
   );
 

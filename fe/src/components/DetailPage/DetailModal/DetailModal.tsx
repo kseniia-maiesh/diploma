@@ -19,6 +19,7 @@ const DetailModal: React.FC<DetailModalProps> = ({
         description: values.description,
         type: values.type,
         status: values.status,
+        origin_country: values.origin_country || '',
         source: values.source || '',
         image_url: values.image_url || '',
       };
@@ -86,6 +87,10 @@ const DetailModal: React.FC<DetailModalProps> = ({
               value: status.id,
             }))}
           />
+        </Form.Item>
+
+        <Form.Item name='origin_country' label='Origin Country'>
+          <Input />
         </Form.Item>
 
         <Form.Item name='source' label='Source'>
