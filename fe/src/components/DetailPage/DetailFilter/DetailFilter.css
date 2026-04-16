@@ -74,18 +74,20 @@
   border: none;
 }
 
-/* BODY CARD (заміна styles.body) */
 .detail-filter-card .ant-card-body {
   border-radius: 12px;
   margin: 4px;
   padding: 16px;
 }
 
-/* theme background */
 .detail-filter-card.dark .ant-card-body {
   background: #1f1f1f;
 }
 
 .detail-filter-card.light .ant-card-body {
   background: #ffffff;
+}
+
+.detail-filter-card .ant-col {
+  margin-bottom: 8px;
 }
