@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Modal, Form, Input, Select } from 'antd';
 import type { DetailFormData, DetailModalProps } from '../../../types/types';
 
@@ -7,8 +8,25 @@ const DetailModal: React.FC<DetailModalProps> = ({
   onCancel,
   componentTypes,
   statuses,
+  initialData,
 }) => {
   const [form] = Form.useForm();
+
+  useEffect(() => {
+  if (initialData) {
+    form.setFieldsValue({
+      name: initialData.name,
+      description: initialData.description,
+      type: initialData.type,
+      status: initialData.status,
+      origin_country: initialData.origin_country,
+      source: initialData.source,
+      image_url: initialData.image_url,
+    });
+  } else {
+    form.resetFields();
+  }
+}, [initialData]);
 
   const handleOk = async () => {
     try {
@@ -38,11 +56,11 @@ const DetailModal: React.FC<DetailModalProps> = ({
 
   return (
     <Modal
-      title='Add New Detail'
+      title={initialData ? 'Edit Component' : 'Add New Detail'}
       open={open}
       onOk={handleOk}
       onCancel={handleCancel}
-      okText='Create'
+      okText={initialData ? 'Update' : 'Create'}
       cancelText='Cancel'
       width={600}
     >

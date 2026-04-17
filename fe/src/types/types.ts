@@ -2,13 +2,16 @@ export interface DetailListProps {
   id: number
   name: string
   description: string
+  type: number
   type_name: string
+  status: number
   status_name: string
   source: string
   origin_country: string
   image_url: string
   theme: 'light' | 'dark'
   onDelete?: (id: number) => void
+  onEdit?: (component: DetailItem) => void
 }
 
 export interface Type {
@@ -79,6 +82,7 @@ export interface DetailModalProps {
   onCancel: () => void;
   componentTypes: any[];
   statuses: any[];
+  initialData?: DetailItem | null;
 }
 
 export interface DetailFilterProps {
@@ -102,3 +106,4 @@ export type AppAction =
   | { type: 'ADD_COMPONENT'; payload: DetailItem }
   | { type: 'DELETE_COMPONENT'; payload: number }
   | { type: 'TOGGLE_THEME' }
+  | { type: 'UPDATE_COMPONENT'; payload: DetailItem }

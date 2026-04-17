@@ -29,12 +29,14 @@ import { FilterState, DetailFormData } from '../../types/types';
 import DetailModal from '../../components/DetailPage/DetailModal/DetailModal';
 import DetailHeader from '../../components/DetailPage/Header/Header';
 import { useFiltersInUrl } from '../../services/urlHook';
-import { useSearchParams } from 'react-router-dom';
+import { updateDetail } from '../../state/actions';
+import { DetailItem } from '../../types/types';
 import './DetailPage.css';
 
 const DetailPage: React.FC = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingComponent, setEditingComponent] = useState<DetailItem | null>(null);
   const themeClass = state.theme === 'dark' ? 'dark' : 'light';
 
   useFiltersInUrl({
@@ -97,19 +99,36 @@ const DetailPage: React.FC = () => {
   const handleAddDetail = () => setIsModalOpen(true);
   const handleResetFilters = () => resetFilters(dispatch);
   const handlePageChange = (page: number) => setPage(dispatch, page);
-  const handleFilterChange = (filters: Partial<FilterState>) =>
-    setFilter(dispatch, filters);
+  const handleFilterChange = (filters: Partial<FilterState>) => setFilter(dispatch, filters);
 
-  const handleModalOk = async (formData: DetailFormData) => {
-    const result = await createDetail(dispatch, formData);
-    if (result.success) {
-      message.success('Detail created successfully!');
-      setIsModalOpen(false);
-      loadDetails(dispatch, 1, state.filters);
-    } else {
-      message.error(result.error || 'Failed to create component');
-    }
+  const handleEdit = (component: DetailItem) => {
+    setEditingComponent(component);
+    setIsModalOpen(true);
   };
+
+const handleModalOk = async (formData: DetailFormData) => {
+  if (editingComponent) {
+    const result = await updateDetail(
+      dispatch,
+      editingComponent.id,
+      formData
+    );
+    if (!result.success) {
+      message.error(result.error);
+      return;
+    }
+    message.success('Component updated!');
+  } else {
+    const result = await createDetail(dispatch, formData);
+    if (!result.success) {
+      message.error(result.error);
+      return;
+    }
+    message.success('Component created!');
+  }
+  setIsModalOpen(false);
+  setEditingComponent(null);
+};
 
   const handleDelete = async (id: number) => {
     const result = await deleteComponent(dispatch, id);
@@ -170,6 +189,7 @@ const DetailPage: React.FC = () => {
             {...component}
             theme={state.theme}
             onDelete={handleDelete}
+            onEdit={handleEdit}
           />
         ))}
       </div>
@@ -219,9 +239,13 @@ const DetailPage: React.FC = () => {
         <DetailModal
           open={isModalOpen}
           onOk={handleModalOk}
-          onCancel={() => setIsModalOpen(false)}
+          onCancel={() => {
+            setIsModalOpen(false);
+            setEditingComponent(null);
+          }}
           componentTypes={state.componentTypes}
           statuses={state.statuses}
+          initialData={editingComponent}
         />
       </div>
     </ConfigProvider>

@@ -98,6 +98,33 @@ export const createDetail = async (
   }
 };
 
+export const updateDetail = async (
+  dispatch: Dispatch<AppAction>,
+  id: number,
+  formData: DetailFormData,
+) => {
+  try {
+    dispatch({ type: 'SET_LOADING', payload: true });
+    dispatch({ type: 'SET_ERROR', payload: null });
+
+    const response = await api.patch(`/api/components/${id}/`, formData);
+
+    dispatch({ type: 'UPDATE_COMPONENT', payload: response.data });
+
+    return { success: true, data: response.data };
+  } catch (error: any) {
+    const errorMessage =
+      error.response?.data?.message || 'Failed to update component';
+
+    dispatch({ type: 'SET_ERROR', payload: errorMessage });
+    console.error('Error updating component:', error);
+
+    return { success: false, error: errorMessage };
+  } finally {
+    dispatch({ type: 'SET_LOADING', payload: false });
+  }
+};
+
 export const deleteComponent = async (
   dispatch: Dispatch<AppAction>,
   componentId: number,

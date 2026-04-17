@@ -1,5 +1,5 @@
 import { Card, Tag, Typography, Flex, Button, Popconfirm, Space, Tooltip } from 'antd';
-import { DeleteFilled, LinkOutlined} from '@ant-design/icons';
+import { DeleteFilled, LinkOutlined, EditOutlined} from '@ant-design/icons';
 import type { DetailListProps } from '../../../types/types';
 import { regions, typeDescriptions } from '../../../constants/constants';
 import ReactCountryFlag from 'react-country-flag';
@@ -11,13 +11,16 @@ function DetailList({
   id,
   name,
   description,
+  type,
   type_name,
+  status,
   status_name,
   source,
   origin_country,
   image_url,
   theme,
   onDelete,
+  onEdit,
 }: DetailListProps) {
   const themeClass = theme === 'dark' ? 'dark' : 'light';
 
@@ -89,6 +92,27 @@ const getTypeClass = (type: string): string => {
           <Title level={4} style={{ margin: 0 }}>
             {name}
           </Title>
+          {onEdit && (
+            <Button
+              type='text'
+              icon={<EditOutlined />}
+              size='small'
+              onClick={() =>
+                onEdit({
+                  id,
+                  name,
+                  description,
+                  type,
+                  type_name,
+                  status,
+                  status_name,
+                  source,
+                  origin_country,
+                  image_url,
+                })
+              }
+            />
+          )}
           {onDelete && (
             <Popconfirm
               title='Delete component'

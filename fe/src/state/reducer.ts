@@ -98,6 +98,16 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         },
       }
 
+    case 'UPDATE_COMPONENT':
+      return {
+        ...state,
+        components: state.components.map((component) =>
+          component.id === action.payload.id
+            ? action.payload
+            : component
+        ),
+      };
+
     case 'ADD_COMPONENT':
       return {
         ...state,
