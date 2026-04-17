@@ -5,7 +5,7 @@ import DetailPage from '../DetailPage/DetailPage';
 
 function App() {
   return (
-        <DetailPage />
+      <DetailPage />
   );
 }
 

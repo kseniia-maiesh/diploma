@@ -12,6 +12,7 @@ export const regions = [
   { name: 'United Kingdom', value: 'GB' },
   { name: 'USA', value: 'US' }
 ];
+
 export const typeDescriptions: Record<string, string> = {
   'Microcontroller': 'Controls and processes data in embedded systems',
   'GPS Module': 'Provides geolocation and positioning data',
