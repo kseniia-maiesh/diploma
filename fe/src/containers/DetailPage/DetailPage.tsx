@@ -15,6 +15,7 @@ import { appReducer, initialState } from '../../state/reducer';
 import {
   loadDetails,
   loadDetailTypes,
+  loadDetailStats,
   loadStatuses,
   setFilter,
   resetFilters,
@@ -25,6 +26,7 @@ import {
 } from '../../state/actions';
 import DetailList from '../../components/DetailPage/DetailList/DetailList';
 import DetailFilter from '../../components/DetailPage/DetailFilter/DetailFilter';
+import DetailStats from '../../components/DetailPage/DetailStats/DetailStats';
 import { FilterState, DetailFormData } from '../../types/types';
 import DetailModal from '../../components/DetailPage/DetailModal/DetailModal';
 import DetailHeader from '../../components/DetailPage/Header/Header';
@@ -36,7 +38,10 @@ import './DetailPage.css';
 const DetailPage: React.FC = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingComponent, setEditingComponent] = useState<DetailItem | null>(null);
+  const [isStatsOpen, setIsStatsOpen] = useState(false);
+  const [editingComponent, setEditingComponent] = useState<DetailItem | null>(
+    null,
+  );
   const themeClass = state.theme === 'dark' ? 'dark' : 'light';
 
   useFiltersInUrl({
@@ -50,6 +55,7 @@ const DetailPage: React.FC = () => {
     loadDetails(dispatch, state.pagination.currentPage, state.filters);
     loadDetailTypes(dispatch);
     loadStatuses(dispatch);
+    loadDetailStats(dispatch);
   }, []);
 
   useEffect(() => {
@@ -99,36 +105,44 @@ const DetailPage: React.FC = () => {
   const handleAddDetail = () => setIsModalOpen(true);
   const handleResetFilters = () => resetFilters(dispatch);
   const handlePageChange = (page: number) => setPage(dispatch, page);
-  const handleFilterChange = (filters: Partial<FilterState>) => setFilter(dispatch, filters);
+  const handleFilterChange = (filters: Partial<FilterState>) =>
+    setFilter(dispatch, filters);
 
   const handleEdit = (component: DetailItem) => {
     setEditingComponent(component);
     setIsModalOpen(true);
   };
 
-const handleModalOk = async (formData: DetailFormData) => {
-  if (editingComponent) {
-    const result = await updateDetail(
-      dispatch,
-      editingComponent.id,
-      formData
-    );
-    if (!result.success) {
-      message.error(result.error);
-      return;
+  const chartData = useMemo(() => {
+    return state.componentStats.map((item) => ({
+      name: item.origin_country,
+      value: item.count,
+    }));
+  }, [state.componentStats]);
+
+  const handleModalOk = async (formData: DetailFormData) => {
+    if (editingComponent) {
+      const result = await updateDetail(
+        dispatch,
+        editingComponent.id,
+        formData,
+      );
+      if (!result.success) {
+        message.error(result.error);
+        return;
+      }
+      message.success('Component updated!');
+    } else {
+      const result = await createDetail(dispatch, formData);
+      if (!result.success) {
+        message.error(result.error);
+        return;
+      }
+      message.success('Component created!');
     }
-    message.success('Component updated!');
-  } else {
-    const result = await createDetail(dispatch, formData);
-    if (!result.success) {
-      message.error(result.error);
-      return;
-    }
-    message.success('Component created!');
-  }
-  setIsModalOpen(false);
-  setEditingComponent(null);
-};
+    setIsModalOpen(false);
+    setEditingComponent(null);
+  };
 
   const handleDelete = async (id: number) => {
     const result = await deleteComponent(dispatch, id);
@@ -219,6 +233,16 @@ const handleModalOk = async (formData: DetailFormData) => {
             theme={state.theme}
             onToggleTheme={handleThemeToggle}
             onAdd={handleAddDetail}
+          />
+
+          <Button type='default' onClick={() => setIsStatsOpen(true)}>
+            📊 Analytics by country
+          </Button>
+
+          <DetailStats
+            open={isStatsOpen}
+            onCancel={() => setIsStatsOpen(false)}
+            stats={state.componentStats}
           />
 
           <DetailFilter

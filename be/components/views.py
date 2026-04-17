@@ -1,11 +1,11 @@
 from rest_framework import viewsets, status
+from django.db.models import Count
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from .models import ComponentType, Status, Component
 from .serializers import ComponentTypeSerializer, StatusSerializer, ComponentSerializer
 from .filters import ComponentFilter, ComponentTypeFilter, StatusFilter
-
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 12
@@ -59,3 +59,13 @@ class ComponentViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(components, many=True)
             return Response(serializer.data)
         return Response({'error': 'status_id parameter is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=['get'])
+    def stats_by_country(self, request):
+        data = (
+            Component.objects
+            .values('origin_country')
+            .annotate(count=Count('id'))
+            .order_by('-count')
+        )
+        return Response(data)

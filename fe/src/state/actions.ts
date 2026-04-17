@@ -60,6 +60,16 @@ export const loadStatuses = async (dispatch: Dispatch<AppAction>) => {
   }
 };
 
+export const loadDetailStats = async (dispatch: Dispatch<AppAction>) => {
+  try {
+    const response = await api.get('/api/components/stats_by_country/');
+    const types = response.data.results || response.data;
+    dispatch({ type: 'SET_COMPONENT_STATS', payload: types });
+  } catch (error) {
+    console.error('Error loading component types:', error);
+  }
+};
+
 export const setFilter = (
   dispatch: Dispatch<AppAction>,
   filters: Partial<FilterState>,

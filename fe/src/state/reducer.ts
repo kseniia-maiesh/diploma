@@ -4,6 +4,7 @@ export const initialState: AppState = {
   components: [],
   componentTypes: [],
   statuses: [],
+  componentStats: [],
   filters: {
     name: '',
     description: '',
@@ -51,6 +52,12 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return {
         ...state,
         statuses: action.payload,
+      }
+
+    case 'SET_COMPONENT_STATS':
+      return {
+        ...state,
+        componentStats: action.payload,
       }
 
     case 'SET_FILTER':

@@ -24,6 +24,11 @@ export interface Status {
   name: string
 }
 
+export interface Stats {
+  origin_country: string
+  count: number
+}
+
 export interface DetailItem {
   id: number
   name: string
@@ -59,6 +64,7 @@ export interface AppState {
   components: DetailItem[]
   componentTypes: Type[]
   statuses: Status[]
+  componentStats: Stats[]
   filters: FilterState
   pagination: PaginationInfo
   loading: boolean
@@ -98,6 +104,7 @@ export type AppAction =
   | { type: 'SET_COMPONENTS'; payload: { results: DetailItem[]; count: number; next: string | null; previous: string | null } }
   | { type: 'SET_COMPONENT_TYPES'; payload: Type[] }
   | { type: 'SET_STATUSES'; payload: Status[] }
+  | { type: 'SET_COMPONENT_STATS'; payload: Stats[] }
   | { type: 'SET_FILTER'; payload: Partial<FilterState> }
   | { type: 'RESET_FILTERS' }
   | { type: 'SET_LOADING'; payload: boolean }
