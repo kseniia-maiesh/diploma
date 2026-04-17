@@ -17,8 +17,10 @@ export const downloadFile = async (url: string, filename: string) => {
 };
 
 export const exportOneComponent = (id: number, format: 'csv' | 'json') => {
-  return downloadFile(
-    `/api/components/${id}/export_one/?format=${format}`,
-    `component_${id}.${format}`
-  );
+  const url =
+    format === 'csv'
+      ? `/api/components/${id}/export_one/`
+      : `/api/components/${id}/export_one/?format=json`;
+
+  return downloadFile(url, `component_${id}.${format}`);
 };
