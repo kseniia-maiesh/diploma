@@ -58,6 +58,7 @@ const getTypeClass = (type: string): string => {
   if (t.includes('gyroscope')) return 'gyroscope';
   if (t.includes('accelerometer')) return 'accelerometer';
   if (t.includes('servo')) return 'servo';
+  if (t.includes('engine')) return 'engine';
 
   return 'default';
 };

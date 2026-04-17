@@ -216,4 +216,5 @@ export const typeDescriptions: Record<string, string> = {
   'Gyroscope': 'Measures rotation/orientation',
   'Accelerometer': 'Measures acceleration',
   'Servo': 'Controls precise movement',
+  'Engine': 'Generates power',
 };

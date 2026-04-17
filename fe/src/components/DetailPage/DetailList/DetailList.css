@@ -259,6 +259,16 @@
   color: #ffffff;
 }
 
+.detail-type-tag.engine.dark {
+  background: linear-gradient(135deg, #3a0d2b, #1a1a2e);
+  color: #ff85c0;
+}
+
+.detail-type-tag.engine.light {
+  background: linear-gradient(135deg, #ff6ec7, #ff2d95);
+  color: #ffffff;
+}
+
 .detail-type-tag.default.dark {
   background: linear-gradient(135deg, #1d3a8a, #10239e);
   color: #91d5ff;
