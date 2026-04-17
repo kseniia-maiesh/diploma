@@ -5,6 +5,7 @@ export const regions = [
   { name: 'Iran', value: 'IR' },
   { name: 'Japan', value: 'JP' },
   { name: 'Russia', value: 'RU' },
+  { name: 'South Korea', value: 'KR' },
   { name: 'Switzerland', value: 'CH' },
   { name: 'Taiwan', value: 'TW' },
   { name: 'Ukraine', value: 'UA' },
