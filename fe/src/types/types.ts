@@ -1,4 +1,4 @@
-export interface DetailListProps {
+export interface ListProps {
   id: number
   name: string
   description: string
@@ -91,7 +91,7 @@ export interface DetailModalProps {
   initialData?: DetailItem | null;
 }
 
-export interface DetailFilterProps {
+export interface FilterProps {
   filters: FilterState;
   componentTypes: Type[];
   statuses: Status[];

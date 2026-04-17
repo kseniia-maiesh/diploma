@@ -1,14 +1,14 @@
 import { Card, Tag, Typography, Flex, Button, Popconfirm, Space, Tooltip, Dropdown } from 'antd';
 import { DeleteFilled, LinkOutlined, EditOutlined, DownloadOutlined } from '@ant-design/icons';
-import type { DetailListProps } from '../../../types/types';
+import type { ListProps } from '../../../types/types';
 import { regions, typeDescriptions } from '../../../constants/constants';
 import { getExportMenu } from '../../../constants/constants';
 import ReactCountryFlag from 'react-country-flag';
-import './DetailList.css';
+import './List.css';
 
 const { Title, Text } = Typography;
 
-function DetailList({
+function List({
   id,
   name,
   description,
@@ -22,7 +22,7 @@ function DetailList({
   theme,
   onDelete,
   onEdit,
-}: DetailListProps) {
+}: ListProps) {
   const themeClass = theme === 'dark' ? 'dark' : 'light';
 
   const getCountryCode = (countryName: string) =>
@@ -162,4 +162,4 @@ function DetailList({
   );
 }
 
-export default DetailList;
+export default List;

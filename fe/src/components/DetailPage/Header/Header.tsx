@@ -34,15 +34,16 @@ const DetailHeader: React.FC<DetailHeaderProps> = ({
           Analytics
         </Button>
 
+        <Dropdown menu={{ items: exportItems }}>
+          <Button icon={<DownloadOutlined />}>Export</Button>
+        </Dropdown>
+
         <Button
           icon={theme === 'dark' ? <BulbFilled /> : <BulbOutlined />}
           onClick={onToggleTheme}
         >
           {theme === 'dark' ? 'Light' : 'Dark'}
         </Button>
-        <Dropdown menu={{ items: exportItems }}>
-          <Button icon={<DownloadOutlined />}>Export</Button>
-        </Dropdown>
 
         <Button type='primary' icon={<PlusOutlined />} onClick={onAdd}>
           Add Detail

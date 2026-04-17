@@ -7,13 +7,13 @@ import {
 } from '@ant-design/icons';
 import { ReactCountryFlag } from 'react-country-flag';
 import { regions } from '../../../constants/constants';
-import { DetailFilterProps } from '../../../types/types';
-import './DetailFilter.css';
+import { FilterProps } from '../../../types/types';
+import './Filter.css';
 
 const { Search } = Input;
 const { Text } = Typography;
 
-const DetailFilter: React.FC<DetailFilterProps> = ({
+const Filter: React.FC<FilterProps> = ({
   filters,
   componentTypes,
   statuses,
@@ -138,4 +138,4 @@ const DetailFilter: React.FC<DetailFilterProps> = ({
   );
 };
 
-export default DetailFilter;
+export default Filter;

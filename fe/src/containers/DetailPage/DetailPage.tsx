@@ -24,11 +24,11 @@ import {
   deleteComponent,
   toggleTheme,
 } from '../../state/actions';
-import DetailList from '../../components/DetailPage/DetailList/DetailList';
-import DetailFilter from '../../components/DetailPage/DetailFilter/DetailFilter';
-import DetailStats from '../../components/DetailPage/DetailStats/DetailStats';
+import List from '../../components/DetailPage/List/List';
+import Filter from '../../components/DetailPage/Filter/Filter';
+import DetailStats from '../../components/DetailPage/Stats/Stats';
 import { FilterState, DetailFormData } from '../../types/types';
-import DetailModal from '../../components/DetailPage/DetailModal/DetailModal';
+import DetailModal from '../../components/DetailPage/Modal/Modal';
 import DetailHeader from '../../components/DetailPage/Header/Header';
 import { useFiltersInUrl } from '../../services/urlHook';
 import { updateDetail } from '../../state/actions';
@@ -37,7 +37,7 @@ import './DetailPage.css';
 
 const DetailPage: React.FC = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [editingComponent, setEditingComponent] = useState<DetailItem | null>(
     null,
@@ -102,7 +102,7 @@ const DetailPage: React.FC = () => {
   const handleRetry = () =>
     loadDetails(dispatch, state.pagination.currentPage, state.filters);
   const handleThemeToggle = () => toggleTheme(dispatch);
-  const handleAddDetail = () => setIsModalOpen(true);
+  const handleAddDetail = () => setIsDetailModalOpen(true);
   const handleResetFilters = () => resetFilters(dispatch);
   const handlePageChange = (page: number) => setPage(dispatch, page);
   const handleFilterChange = (filters: Partial<FilterState>) =>
@@ -110,7 +110,7 @@ const DetailPage: React.FC = () => {
 
   const handleEdit = (component: DetailItem) => {
     setEditingComponent(component);
-    setIsModalOpen(true);
+    setIsDetailModalOpen(true);
   };
 
   const chartData = useMemo(() => {
@@ -120,7 +120,7 @@ const DetailPage: React.FC = () => {
     }));
   }, [state.componentStats]);
 
-  const handleModalOk = async (formData: DetailFormData) => {
+  const handleDetailModalOk = async (formData: DetailFormData) => {
     if (editingComponent) {
       const result = await updateDetail(
         dispatch,
@@ -140,7 +140,7 @@ const DetailPage: React.FC = () => {
       }
       message.success('Component created!');
     }
-    setIsModalOpen(false);
+    setIsDetailModalOpen(false);
     setEditingComponent(null);
   };
 
@@ -198,7 +198,7 @@ const DetailPage: React.FC = () => {
 
       <div className='detail-page-grid'>
         {state.components.map((component) => (
-          <DetailList
+          <List
             key={component.id}
             {...component}
             theme={state.theme}
@@ -242,7 +242,7 @@ const DetailPage: React.FC = () => {
             stats={state.componentStats}
           />
 
-          <DetailFilter
+          <Filter
             filters={state.filters}
             componentTypes={state.componentTypes}
             statuses={state.statuses}
@@ -258,10 +258,10 @@ const DetailPage: React.FC = () => {
         </Space>
 
         <DetailModal
-          open={isModalOpen}
-          onOk={handleModalOk}
+          open={isDetailModalOpen}
+          onOk={handleDetailModalOk}
           onCancel={() => {
-            setIsModalOpen(false);
+            setIsDetailModalOpen(false);
             setEditingComponent(null);
           }}
           componentTypes={state.componentTypes}
