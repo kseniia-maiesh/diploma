@@ -233,11 +233,8 @@ const DetailPage: React.FC = () => {
             theme={state.theme}
             onToggleTheme={handleThemeToggle}
             onAdd={handleAddDetail}
+            onOpenStatus={() => setIsStatsOpen(true)}
           />
-
-          <Button type='default' onClick={() => setIsStatsOpen(true)}>
-            📊 Analytics by country
-          </Button>
 
           <DetailStats
             open={isStatsOpen}

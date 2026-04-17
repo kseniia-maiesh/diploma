@@ -1,7 +1,8 @@
-import { Card, Tag, Typography, Flex, Button, Popconfirm, Space, Tooltip } from 'antd';
-import { DeleteFilled, LinkOutlined, EditOutlined} from '@ant-design/icons';
+import { Card, Tag, Typography, Flex, Button, Popconfirm, Space, Tooltip, Dropdown } from 'antd';
+import { DeleteFilled, LinkOutlined, EditOutlined, DownloadOutlined } from '@ant-design/icons';
 import type { DetailListProps } from '../../../types/types';
 import { regions, typeDescriptions } from '../../../constants/constants';
+import { getExportMenu } from '../../../constants/constants';
 import ReactCountryFlag from 'react-country-flag';
 import './DetailList.css';
 
@@ -39,29 +40,29 @@ function DetailList({
     return '#1890ff';
   };
 
-const getTypeClass = (type: string): string => {
-  const t = type.toLowerCase();
+  const getTypeClass = (type: string): string => {
+    const t = type.toLowerCase();
 
-  if (t.includes('microcontroller')) return 'microcontroller';
-  if (t.includes('gps')) return 'gps';
-  if (t.includes('radio')) return 'radio';
-  if (t.includes('sensor')) return 'sensor';
-  if (t.includes('power')) return 'power';
-  if (t.includes('memory')) return 'memory';
-  if (t.includes('antenna')) return 'antenna';
-  if (t.includes('camera')) return 'camera';
-  if (t.includes('flight')) return 'flight-controller';
-  if (t.includes('voltage')) return 'voltage-regulator';
-  if (t.includes('battery')) return 'battery';
-  if (t.includes('connector')) return 'connector';
-  if (t.includes('pcb')) return 'pcb';
-  if (t.includes('gyroscope')) return 'gyroscope';
-  if (t.includes('accelerometer')) return 'accelerometer';
-  if (t.includes('servo')) return 'servo';
-  if (t.includes('engine')) return 'engine';
+    if (t.includes('microcontroller')) return 'microcontroller';
+    if (t.includes('gps')) return 'gps';
+    if (t.includes('radio')) return 'radio';
+    if (t.includes('sensor')) return 'sensor';
+    if (t.includes('power')) return 'power';
+    if (t.includes('memory')) return 'memory';
+    if (t.includes('antenna')) return 'antenna';
+    if (t.includes('camera')) return 'camera';
+    if (t.includes('flight')) return 'flight-controller';
+    if (t.includes('voltage')) return 'voltage-regulator';
+    if (t.includes('battery')) return 'battery';
+    if (t.includes('connector')) return 'connector';
+    if (t.includes('pcb')) return 'pcb';
+    if (t.includes('gyroscope')) return 'gyroscope';
+    if (t.includes('accelerometer')) return 'accelerometer';
+    if (t.includes('servo')) return 'servo';
+    if (t.includes('engine')) return 'engine';
 
-  return 'default';
-};
+    return 'default';
+  };
 
   return (
     <Card
@@ -139,13 +140,21 @@ const getTypeClass = (type: string): string => {
           align='center'
           className='detail-card-tags'
         >
+          <Dropdown menu={{ items: getExportMenu(id) }}>
+            <Button icon={<DownloadOutlined />} />
+          </Dropdown>
           <Tooltip title={typeDescriptions[type_name] || type_name}>
-            <Tag className={`detail-type-tag ${getTypeClass(type_name)} ${themeClass}`}>
+            <Tag
+              className={`detail-type-tag ${getTypeClass(type_name)} ${themeClass}`}
+            >
               {type_name}
             </Tag>
           </Tooltip>
           <Space size='small' align='center'>
-            <ReactCountryFlag countryCode={getCountryCode(origin_country) || 'UN'} svg />
+            <ReactCountryFlag
+              countryCode={getCountryCode(origin_country) || 'UN'}
+              svg
+            />
           </Space>
         </Flex>
       </Flex>

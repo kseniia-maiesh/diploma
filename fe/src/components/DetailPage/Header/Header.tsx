@@ -1,5 +1,12 @@
-import { Button, Space, Typography } from 'antd';
-import { BulbFilled, BulbOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Space, Typography, Dropdown } from 'antd';
+import {
+  BulbFilled,
+  BulbOutlined,
+  PlusOutlined,
+  BarChartOutlined,
+  DownloadOutlined,
+} from '@ant-design/icons';
+import { exportItems } from '../../../constants/constants';
 
 const { Title } = Typography;
 
@@ -7,12 +14,14 @@ interface DetailHeaderProps {
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
   onAdd: () => void;
+  onOpenStatus: () => void;
 }
 
 const DetailHeader: React.FC<DetailHeaderProps> = ({
   theme,
   onToggleTheme,
   onAdd,
+  onOpenStatus,
 }) => {
   return (
     <Space className='detail-page-header'>
@@ -20,21 +29,22 @@ const DetailHeader: React.FC<DetailHeaderProps> = ({
         Details
       </Title>
 
-      <Space>
-        <Button
-          icon={theme === 'dark' ? <BulbFilled /> : <BulbOutlined />}
-          onClick={onToggleTheme}
-          size='large'
-        >
-          {theme === 'dark' ? 'Light' : 'Dark'} Mode
+      <Space className='detail-header-actions'>
+        <Button icon={<BarChartOutlined />} onClick={onOpenStatus}>
+          Analytics
         </Button>
 
         <Button
-          type='primary'
-          icon={<PlusOutlined />}
-          onClick={onAdd}
-          size='large'
+          icon={theme === 'dark' ? <BulbFilled /> : <BulbOutlined />}
+          onClick={onToggleTheme}
         >
+          {theme === 'dark' ? 'Light' : 'Dark'}
+        </Button>
+        <Dropdown menu={{ items: exportItems }}>
+          <Button icon={<DownloadOutlined />}>Export</Button>
+        </Dropdown>
+
+        <Button type='primary' icon={<PlusOutlined />} onClick={onAdd}>
           Add Detail
         </Button>
       </Space>

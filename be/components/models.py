@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class ComponentType(models.Model):
     name = models.CharField(max_length=100)
 
@@ -20,6 +21,7 @@ class Component(models.Model):
     source = models.CharField(max_length=255)
     origin_country = models.CharField(max_length=100, blank=True, null=True)
     image_url = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'components'

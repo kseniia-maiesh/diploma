@@ -1,3 +1,5 @@
+import { downloadFile, exportOneComponent } from '../services/export';
+
 export const regions = [
   { name: 'Canada', value: 'CA' },
   { name: 'China', value: 'CN' },
@@ -46,4 +48,32 @@ export const COLORS = [
   '#2f54eb',
   '#fa541c',
   '#36cfc9',
+];
+
+export const exportItems = [
+  {
+    key: 'csv',
+    label: 'Download CSV',
+    onClick: () =>
+      downloadFile('/api/components/export_all/', 'components.csv'),
+  },
+  {
+    key: 'json',
+    label: 'Download JSON',
+    onClick: () =>
+      downloadFile('/api/components/export_all/?format=json', 'components.json'),
+  },
+];
+
+export const getExportMenu = (id: number) => [
+  {
+    key: 'csv',
+    label: 'Download CSV',
+    onClick: () => exportOneComponent(id, 'csv'),
+  },
+  {
+    key: 'json',
+    label: 'Download JSON',
+    onClick: () => exportOneComponent(id, 'json'),
+  },
 ];
