@@ -92,13 +92,6 @@ const DetailPage: React.FC = () => {
     setIsDetailModalOpen(true);
   };
 
-  const chartData = useMemo(() => {
-    return state.componentStats.map((item) => ({
-      name: item.origin_country,
-      value: item.count,
-    }));
-  }, [state.componentStats]);
-
   const handleDetailModalOk = async (formData: DetailFormData) => {
     if (editingComponent) {
       const result = await updateDetail(
