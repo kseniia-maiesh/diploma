@@ -1,9 +1,11 @@
+import React from 'react';
+import ReactCountryFlag from 'react-country-flag';
 import { Card, Tag, Typography, Flex, Button, Popconfirm, Space, Tooltip, Dropdown } from 'antd';
 import { DeleteFilled, LinkOutlined, EditOutlined, DownloadOutlined } from '@ant-design/icons';
+
 import type { ListProps } from '../../../types/types';
 import { regions, typeDescriptions } from '../../../constants/constants';
 import { getExportMenu } from '../../../constants/constants';
-import ReactCountryFlag from 'react-country-flag';
 import './List.css';
 
 const { Title, Text } = Typography;
