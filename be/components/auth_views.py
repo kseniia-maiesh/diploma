@@ -6,6 +6,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login(request):
