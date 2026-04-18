@@ -1,37 +1,18 @@
 import React, { useEffect, useReducer, useState, useMemo } from 'react';
-import {
-  Space,
-  Spin,
-  Alert,
-  Button,
-  Empty,
-  Pagination,
-  message,
-  ConfigProvider,
-  theme as antdTheme,
-} from 'antd';
+import { Space, Spin, Alert, Button, Empty, Pagination, message, ConfigProvider, theme as antdTheme } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+
+
 import { appReducer, initialState } from '../../state/reducer';
-import {
-  loadDetails,
-  loadDetailTypes,
-  loadDetailStats,
-  loadStatuses,
-  setFilter,
-  resetFilters,
-  setPage,
-  createDetail,
-  deleteComponent,
-  toggleTheme,
-} from '../../state/actions';
+import { loadDetails, loadDetailTypes, loadDetailStats, loadStatuses, setFilter, resetFilters, setPage, createDetail, deleteComponent, toggleTheme, updateDetail } from '../../state/actions';
+import { FilterState, DetailFormData } from '../../types/types';
+import { useFiltersInUrl } from '../../services/urlHook';
+
 import List from '../../components/DetailPage/List/List';
 import Filter from '../../components/DetailPage/Filter/Filter';
 import DetailStats from '../../components/DetailPage/Stats/Stats';
-import { FilterState, DetailFormData } from '../../types/types';
 import DetailModal from '../../components/DetailPage/Modal/Modal';
 import DetailHeader from '../../components/DetailPage/Header/Header';
-import { useFiltersInUrl } from '../../services/urlHook';
-import { updateDetail } from '../../state/actions';
 import { DetailItem } from '../../types/types';
 import './DetailPage.css';
 
@@ -99,14 +80,12 @@ const DetailPage: React.FC = () => {
     return { showDetails, showEmpty, resultsRange };
   }, [state]);
 
-  const handleRetry = () =>
-    loadDetails(dispatch, state.pagination.currentPage, state.filters);
+  const handleRetry = () => loadDetails(dispatch, state.pagination.currentPage, state.filters);
   const handleThemeToggle = () => toggleTheme(dispatch);
   const handleAddDetail = () => setIsDetailModalOpen(true);
   const handleResetFilters = () => resetFilters(dispatch);
   const handlePageChange = (page: number) => setPage(dispatch, page);
-  const handleFilterChange = (filters: Partial<FilterState>) =>
-    setFilter(dispatch, filters);
+  const handleFilterChange = (filters: Partial<FilterState>) => setFilter(dispatch, filters);
 
   const handleEdit = (component: DetailItem) => {
     setEditingComponent(component);
