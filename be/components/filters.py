@@ -1,6 +1,7 @@
 import django_filters
 from .models import Component, ComponentType, Status
 
+
 class ComponentFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains', label='Name contains')
     description = django_filters.CharFilter(lookup_expr='icontains', label='Description contains')
