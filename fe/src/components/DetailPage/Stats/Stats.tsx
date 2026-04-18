@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Modal, Card } from 'antd';
 import { PieChart, Pie, Tooltip, ResponsiveContainer, Cell, Legend } from 'recharts';
+
 import { Stats } from '../../../types/types';
 import { COLORS } from '../../../constants/constants';
 
