@@ -1,11 +1,8 @@
 import React from 'react';
 import { Card, Input, Select, Button, Space, Row, Col, Typography } from 'antd';
-import {
-  ReloadOutlined,
-  SearchOutlined,
-  FilterOutlined,
-} from '@ant-design/icons';
+import { ReloadOutlined, SearchOutlined, FilterOutlined } from '@ant-design/icons';
 import { ReactCountryFlag } from 'react-country-flag';
+
 import { regions } from '../../../constants/constants';
 import { FilterProps } from '../../../types/types';
 import './Filter.css';
