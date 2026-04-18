@@ -1,11 +1,7 @@
+import React from 'react';
 import { Button, Space, Typography, Dropdown } from 'antd';
-import {
-  BulbFilled,
-  BulbOutlined,
-  PlusOutlined,
-  BarChartOutlined,
-  DownloadOutlined,
-} from '@ant-design/icons';
+import { BulbFilled, BulbOutlined, PlusOutlined, BarChartOutlined, DownloadOutlined } from '@ant-design/icons';
+
 import { exportItems } from '../../../constants/constants';
 
 const { Title } = Typography;
