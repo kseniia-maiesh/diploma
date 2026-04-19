@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState, useMemo } from 'react';
-import { Space, Spin, Alert, Button, Empty, Pagination, message, ConfigProvider, theme as antdTheme } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Space, Spin, Alert, Button, Empty, Pagination, message, ConfigProvider, Segmented,theme as antdTheme } from 'antd';
+import { PlusOutlined, AppstoreOutlined, BarsOutlined } from '@ant-design/icons';
 
 
 import { appReducer, initialState } from '../../state/reducer';
@@ -13,6 +13,7 @@ import Filter from '../../components/DetailPage/Filter/Filter';
 import DetailStats from '../../components/DetailPage/Stats/Stats';
 import DetailModal from '../../components/DetailPage/Modal/Modal';
 import DetailHeader from '../../components/DetailPage/Header/Header';
+import DetailTable from '../../components/DetailPage/Table/Table';
 import { DetailItem } from '../../types/types';
 import './DetailPage.css';
 
@@ -20,9 +21,9 @@ const DetailPage: React.FC = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isStatsOpen, setIsStatsOpen] = useState(false);
-  const [editingComponent, setEditingComponent] = useState<DetailItem | null>(
-    null,
-  );
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [editingComponent, setEditingComponent] = useState<DetailItem | null>( null );
+
   const themeClass = state.theme === 'dark' ? 'dark' : 'light';
 
   useFiltersInUrl({
@@ -64,10 +65,8 @@ const DetailPage: React.FC = () => {
   );
 
   const ui = useMemo(() => {
-    const showDetails =
-      !state.loading && !state.error && state.components.length > 0;
-    const showEmpty =
-      !state.loading && !state.error && state.components.length === 0;
+    const showDetails = !state.loading && !state.error && state.components.length > 0;
+    const showEmpty = !state.loading && !state.error && state.components.length === 0;
 
     const resultsRange = {
       start: (state.pagination.currentPage - 1) * state.pagination.pageSize + 1,
@@ -167,7 +166,21 @@ const DetailPage: React.FC = () => {
         Showing {ui.resultsRange.start} - {ui.resultsRange.end} of{' '}
         {state.pagination.count} components
       </div>
-
+      <Segmented
+        value={viewMode}
+        onChange={(val) => setViewMode(val as 'grid' | 'list')}
+        options={[
+          {
+            value: 'grid',
+            icon: <AppstoreOutlined />,
+          },
+          {
+            value: 'list',
+            icon: <BarsOutlined />,
+          },
+        ]}
+      />
+      {viewMode === 'grid' ? (
       <div className='detail-page-grid'>
         {state.components.map((component) => (
           <List
@@ -179,7 +192,14 @@ const DetailPage: React.FC = () => {
           />
         ))}
       </div>
-
+    ) : (
+      <DetailTable
+        data={state.components}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+        theme={state.theme}
+      />
+    )}
       {state.pagination.totalPages > 1 && (
         <div className='detail-page-pagination'>
           <Pagination

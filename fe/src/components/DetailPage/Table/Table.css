@@ -1,0 +1,280 @@
+.detail-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.detail-card.dark {
+  background: #1f1f1f;
+}
+
+.detail-card.light {
+  background: #ffffff;
+}
+
+.detail-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.detail-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-card-cover {
+  padding: 0;
+  margin: 0;
+}
+
+.detail-card-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+}
+
+.detail-card-image {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-card-status-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.detail-card-no-image {
+  height: 220px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.detail-card-content {
+  flex: 1;
+}
+
+.detail-card-description.dark {
+  color: #959494;
+}
+
+.detail-card-description.light {
+  color: #000000;
+}
+
+.detail-card-tags {
+  margin-top: auto;
+}
+
+.detail-type-tag {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  border: none;
+}
+
+.detail-card .ant-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-card .ant-card-cover {
+  margin: 0;
+  padding: 0;
+}
+
+.detail-type-tag.microcontroller.dark {
+  background: linear-gradient(135deg, #3b0d6e, #1e063a);
+  color: #e0b3ff;
+}
+
+.detail-type-tag.microcontroller.light {
+  background: linear-gradient(135deg, #8e44ad, #6c2bd9);
+  color: #ffffff;
+}
+
+.detail-type-tag.gps.dark {
+  background: linear-gradient(135deg, #0d5c5c, #002f2f);
+  color: #7fffd4;
+}
+
+.detail-type-tag.gps.light {
+  background: linear-gradient(135deg, #2ec4b6, #1aa6a6);
+  color: #ffffff;
+}
+
+.detail-type-tag.radio.dark {
+  background: linear-gradient(135deg, #5a3b0d, #2f1d06);
+  color: #ffd28a;
+}
+
+.detail-type-tag.radio.light {
+  background: linear-gradient(135deg, #f4a261, #e76f51);
+  color: #ffffff;
+}
+
+.detail-type-tag.sensor.dark {
+  background: linear-gradient(135deg, #4d2e00, #261600);
+  color: #ffd591;
+}
+
+.detail-type-tag.sensor.light {
+  background: linear-gradient(135deg, #ffb703, #fb8500);
+  color: #ffffff;
+}
+
+.detail-type-tag.power.dark {
+  background: linear-gradient(135deg, #1b4332, #081c15);
+  color: #95d5b2;
+}
+
+.detail-type-tag.power.light {
+  background: linear-gradient(135deg, #52b788, #40916c);
+  color: #ffffff;
+}
+
+.detail-type-tag.memory.dark {
+  background: linear-gradient(135deg, #3f0d75, #22075e);
+  color: #d3adf7;
+}
+
+.detail-type-tag.memory.light {
+  background: linear-gradient(135deg, #9254de, #722ed1);
+  color: #ffffff;
+}
+
+.detail-type-tag.antenna.dark {
+  background: linear-gradient(135deg, #3d405b, #1d1e33);
+  color: #a8dadc;
+}
+
+.detail-type-tag.antenna.light {
+  background: linear-gradient(135deg, #457b9d, #1d3557);
+  color: #ffffff;
+}
+
+.detail-type-tag.camera.dark {
+  background: linear-gradient(135deg, #2b2d42, #121420);
+  color: #c9d6ff;
+}
+
+.detail-type-tag.camera.light {
+  background: linear-gradient(135deg, #8ecae6, #219ebc);
+  color: #ffffff;
+}
+
+.detail-type-tag.flight-controller.dark {
+  background: linear-gradient(135deg, #6a040f, #370617);
+  color: #ffb3c1;
+}
+
+.detail-type-tag.flight-controller.light {
+  background: linear-gradient(135deg, #e63946, #d00000);
+  color: #ffffff;
+}
+
+.detail-type-tag.voltage-regulator.dark {
+  background: linear-gradient(135deg, #14213d, #0b132b);
+  color: #90e0ef;
+}
+
+.detail-type-tag.voltage-regulator.light {
+  background: linear-gradient(135deg, #48cae4, #00b4d8);
+  color: #ffffff;
+}
+
+.detail-type-tag.battery.dark {
+  background: linear-gradient(135deg, #1b4332, #081c15);
+  color: #b7e4c7;
+}
+
+.detail-type-tag.battery.light {
+  background: linear-gradient(135deg, #52b788, #2d6a4f);
+  color: #ffffff;
+}
+
+.detail-type-tag.connector.dark {
+  background: linear-gradient(135deg, #343a40, #212529);
+  color: #ced4da;
+}
+
+.detail-type-tag.connector.light {
+  background: linear-gradient(135deg, #adb5bd, #6c757d);
+  color: #ffffff;
+}
+
+.detail-type-tag.pcb.dark {
+  background: linear-gradient(135deg, #2f3e46, #1b263b);
+  color: #95d5b2;
+}
+
+.detail-type-tag.pcb.light {
+  background: linear-gradient(135deg, #84a98c, #52796f);
+  color: #ffffff;
+}
+
+.detail-type-tag.gyroscope.dark {
+  background: linear-gradient(135deg, #3a0ca3, #240046);
+  color: #bde0fe;
+}
+
+.detail-type-tag.gyroscope.light {
+  background: linear-gradient(135deg, #4361ee, #3f37c9);
+  color: #ffffff;
+}
+
+.detail-type-tag.accelerometer.dark {
+  background: linear-gradient(135deg, #5f0f40, #310030);
+  color: #ffafcc;
+}
+
+.detail-type-tag.accelerometer.light {
+  background: linear-gradient(135deg, #f72585, #b5179e);
+  color: #ffffff;
+}
+
+.detail-type-tag.servo.dark {
+  background: linear-gradient(135deg, #283618, #1b1b1b);
+  color: #caffbf;
+}
+
+.detail-type-tag.servo.light {
+  background: linear-gradient(135deg, #606c38, #283618);
+  color: #ffffff;
+}
+
+.detail-type-tag.engine.dark {
+  background: linear-gradient(135deg, #3a0d2b, #1a1a2e);
+  color: #ff85c0;
+}
+
+.detail-type-tag.engine.light {
+  background: linear-gradient(135deg, #ff6ec7, #ff2d95);
+  color: #ffffff;
+}
+
+.detail-type-tag.default.dark {
+  background: linear-gradient(135deg, #1d3a8a, #10239e);
+  color: #91d5ff;
+}
+
+.detail-type-tag.default.light {
+  background: linear-gradient(135deg, #69c0ff, #1890ff);
+  color: #ffffff;
+}
