@@ -41,10 +41,6 @@ const DetailPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    loadDetails(dispatch, state.pagination.currentPage, state.filters);
-  }, [state.pagination.currentPage, state.filters]);
-
-  useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [state.pagination.currentPage]);
 
